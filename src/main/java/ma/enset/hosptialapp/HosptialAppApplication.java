@@ -15,8 +15,6 @@ public class HosptialAppApplication {
     public static void main(String[] args) {
         SpringApplication.run(HosptialAppApplication.class, args);
     }
-
-
     @Bean
     CommandLineRunner start(PatientRepository patientRepository){
         return args -> {
