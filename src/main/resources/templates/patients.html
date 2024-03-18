@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymleaf.org">
-<!-- il faut ajouter le moteur de template thymleaf puis l'utiliser-->
+<html lang="en" xmlns:th="http://www.thymleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template"
+>
+<!-- il faut ajouter le moteur de template (nom de la page template) thymleaf puis l'utiliser-->
 <head>
     <meta charset="UTF-8">
     <title>Patients Page</title>
@@ -8,11 +11,12 @@
     <link rel="stylesheet" href="/webjars/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
-<div class="p-3">
+<div layout:fragment="content1"> <!--ajoute le contenue de la page patients.html dans ce fragment  -->
+  <div class="p-3">
     <div class="card">
         <div class="card-header bg-primary text-white">Liste des Patients</div>
         <div class="card-body">
-                <form method="get" th:action="@{index}">
+                <form method="get" th:action="@{/index}">
              <div>
                     <label>keyword :</label>
                  <input type="text" placeholder="Search..." aria-label="Search" name="keyword" th:value="${keyword}">
@@ -21,8 +25,9 @@
                     </button>
              </div>
                 </form>
-            <table class="table table-bordered">
-                <thead>
+            <div class="table-responsive"></div>
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
                 <tr>
                     <th>ID</th>  <th>Nom</th>  <th>Date</th>  <th>Malade</th>  <th>Score</th>
                 </tr>
@@ -40,19 +45,25 @@
                            class="btn btn-danger">
                             <i class="bi bi-trash"></i>
                         </a>
+                    <td>
+                        <a th:href="@{editPatient(id=${p.id},keyword=${keyword},page=${currentPage})}" class="btn btn-info">
+                            <i class="bi bi-pen"></i>
+                        </a>
                     </td>
                 </tr>
                 </tbody>
             </table>
+        </div>
             <ul class="nav nav-pills justify-content-center mt-3">
                 <li th:each="p,status:${pages}">
                     <a th:href="@{/index(page=${status.index},keyword=${keyword})}"
-                       th:class="${(currentPage==status.index) ? 'btn btn-primary m-1' : 'btn btn-outline-primary m-1'}"
+                       th:class="${(currentPage==status.index) ? 'btn btn-success m-1' : 'btn btn-outline-success m-1'}"
                        th:text="${status.index + 1 }"></a>
                 </li>
             </ul>
         </div>
     </div>
+  </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
