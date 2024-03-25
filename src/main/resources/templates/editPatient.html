@@ -19,33 +19,34 @@
             <form method="post" th:action="@{save(page=${page},keyword=${keyword})}" class="my-5 p-4 border rounded bg-light">
 
                 <div class="mb-3">
-                    <label for="id" class="form-label">ID</label>
-                    <input id="id" class="form-control" type="text" name="id" th:value="${patient.id}">
+                    <label for="id" class="form-label">ID : </label>
+                    <label th:text="${patient.id}"></label>
+                    <input id="id" class="form-control" type="hidden" name="id" th:value="${patient.id}">
                 </div>
 
                 <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
-                    <input id="name" class="form-control" type="text" name="Name" th:value="${patient.nom}">
+                    <input id="name" class="form-control" type="text" name="nom" th:value="${patient.nom}">
                     <span  th:errors="${patient.nom}" class="text-danger"></span>
                 </div>
 
                 <div class="mb-3">
                     <label for="dob" class="form-label">Date de Naissance</label>
-                    <input id="dob" class="form-control" type="date" name="Date de Naissance" th:value="${patient.dateNaissance}">
+                    <input id="dob" class="form-control" type="date" name="DateNaissance" th:value="${patient.dateNaissance}">
                     <span th:errors="${patient.dateNaissance}" class="text-danger"></span>
                 </div>
 
                 <div class="mb-3">
                     <div class="form-check">
                         <label class="form-check-label" for="malade">Malade</label>
-                        <input id="malade" class="form-check-input" type="checkbox" name="Malade" th:checked="${patient.malade}">
+                        <input id="malade" class="form-check-input" type="checkbox" name="malade" th:checked="${patient.malade}">
                     </div>
                     <span th:errors="${patient.malade}" class="text-danger"></span>
                 </div>
 
                 <div class="mb-3">
                     <label for="score" class="form-label">Score</label>
-                    <input id="score" class="form-control" type="text" name="Score" th:value="${patient.score}">
+                    <input id="score" class="form-control" type="text" name="score" th:value="${patient.score}">
                     <span th:errors="${patient.score}" class="text-danger"></span>
                 </div>
 
