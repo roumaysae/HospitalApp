@@ -33,6 +33,7 @@ public class HosptialAppApplication {
             patientRepository.save(new Patient(null,"akram",new Date(),true,100));
         };
     }
+    //creation de passwordEncoder :
     @Bean
     PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
